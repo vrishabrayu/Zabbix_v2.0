@@ -21,4 +21,8 @@ export const getAllLicenses = () => {
 
 export const deleteLicense = (licenseKey) => {
   return apiClient.delete(`/license/${licenseKey}`);
+};
+
+export const updateLicense = (licenseKey, data) => {
+  return apiClient.patch(`/update-license/${licenseKey}`, data);
 }; 

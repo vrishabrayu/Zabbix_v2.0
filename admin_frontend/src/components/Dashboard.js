@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
-import LicenseList from './LicenseList';
-import CreateLicenseForm from './CreateLicenseForm';
-import { useNavigate } from 'react-router-dom';
-
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
-  const [key, setKey] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleLicenseCreated = () => {
-    setKey(prevKey => prevKey + 1);
-  };
   const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
     navigate('/login');
   };
 
   return (
-    <div className="dashboard">
-      <header className="dashboard-header">
-        <h2>Admin Dashboard</h2>
+    <div className="dashboard-layout">
+      <aside className="sidebar">
+        <h2>Zabbix Admin</h2>
+        <nav>
+          <ul>
+            <li><NavLink to="/dashboard/create-license" className={({ isActive }) => isActive ? 'active' : ''}>Create License</NavLink></li>
+            <li><NavLink to="/dashboard/all-licenses" className={({ isActive }) => isActive ? 'active' : ''}>All Licenses</NavLink></li>
+          </ul>
+        </nav>
         <button onClick={handleLogout} className="logout-button">Logout</button>
-      </header>
-      <div className="dashboard-content">
-        <CreateLicenseForm onLicenseCreated={handleLicenseCreated} />
-        <LicenseList key={key} />
-      </div>
+      </aside>
+      <main className="dashboard-main">
+        <Outlet />
+      </main>
     </div>
   );
 };

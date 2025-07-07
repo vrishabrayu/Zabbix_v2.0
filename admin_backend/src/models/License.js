@@ -6,9 +6,20 @@ const licenseSchema = new Schema({
     required: true,
     unique: true,
   },
+  instanceId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   clientId: {
     type: String,
     required: true,
+  },
+  email: { // 👈 New field added here
+    type: String,
+    required: true,
+    lowercase: true,
+    match: [/.+@.+\..+/, 'Please enter a valid email address']
   },
   status: {
     type: String,

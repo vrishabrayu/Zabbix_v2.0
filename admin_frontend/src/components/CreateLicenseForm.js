@@ -3,6 +3,7 @@ import { generateLicense } from './ApiClient';
 
 const CreateLicenseForm = ({ onLicenseCreated }) => {
   const [clientId, setClientId] = useState('');
+  const [email, setEmail] = useState('');
   const [years, setYears] = useState('1');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -17,9 +18,10 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
     const expiryDate = new Date(now.setFullYear(now.getFullYear() + parseInt(years)));
 
     try {
-      const response = await generateLicense({ clientId, expiryDate });
-      setSuccess(`License created successfully! License Key: ${response.data.licenseKey}`);
+      const response = await generateLicense({ clientId, expiryDate, email });
+      setSuccess(`License created successfully! License Key: ${response.data.licenseKey}, Instance ID: ${response.data.instanceId}`);
       setClientId('');
+      setEmail('');
       setYears('1');
       if (onLicenseCreated) {
         onLicenseCreated();
@@ -39,6 +41,15 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
             type="text"
             value={clientId}
             onChange={(e) => setClientId(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
