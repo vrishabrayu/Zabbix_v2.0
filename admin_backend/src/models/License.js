@@ -30,6 +30,11 @@ const licenseSchema = new Schema({
     type: Date,
     required: true,
   },
+  application: {
+    type: String,
+    required: true,
+    enum: ['zabbix', 'grafana'],
+  },
 });
 
 export default model('License', licenseSchema);

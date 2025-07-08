@@ -5,6 +5,7 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
   const [clientId, setClientId] = useState('');
   const [email, setEmail] = useState('');
   const [years, setYears] = useState('1');
+  const [product, setProduct] = useState('zabbix');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -18,11 +19,12 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
     const expiryDate = new Date(now.setFullYear(now.getFullYear() + parseInt(years)));
 
     try {
-      const response = await generateLicense({ clientId, expiryDate, email });
+      const response = await generateLicense({ clientId, expiryDate, email, product });
       setSuccess(`License created successfully! License Key: ${response.data.licenseKey}, Instance ID: ${response.data.instanceId}`);
       setClientId('');
       setEmail('');
       setYears('1');
+      setProduct('zabbix');
       if (onLicenseCreated) {
         onLicenseCreated();
       }
@@ -61,6 +63,13 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
             <option value="3">3 years</option>
             <option value="4">4 years</option>
             <option value="5">5 years</option>
+          </select>
+        </div>
+        <div>
+          <label>Product:</label>
+          <select value={product} onChange={e => setProduct(e.target.value)} required>
+            <option value="zabbix">Zabbix</option>
+            <option value="grafana">Grafana</option>
           </select>
         </div>
         <button type="submit">Generate License</button>

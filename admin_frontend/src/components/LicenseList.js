@@ -115,6 +115,7 @@ const LicenseList = () => {
             <tr>
               <th>Client ID</th>
               <th>Expiry Date</th>
+              <th>Product</th>
               <th>Details</th>
               
             </tr>
@@ -124,6 +125,7 @@ const LicenseList = () => {
               <tr key={license._id}>
                 <td>{license.clientId}</td>
                 <td>{daysRemaining(license.expiryDate)}</td>
+                <td>{license.product}</td>
                 <td>
                   <Button onClick={() => setSelectedLicense(license)} variant="contained" color="primary" size="small" sx={{ borderRadius: 2, fontWeight: 500, boxShadow: '0 1px 4px rgba(25,118,210,0.08)' }}>
                     Details
@@ -175,6 +177,7 @@ const LicenseList = () => {
               <div style={{ marginBottom: 2 }}><b>Instance ID:</b> {selectedLicense.instanceId}</div>
               <div style={{ marginBottom: 2 }}><b>Client ID:</b> {selectedLicense.clientId}</div>
               <div style={{ marginBottom: 2 }}><b>Email:</b> {selectedLicense.email}</div>
+              <div style={{ marginBottom: 2 }}><b>Product:</b> {selectedLicense.product}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                 <span style={{ minWidth: 90, fontWeight: 600 }}>Status:</span>
                 {!editMode ? (
