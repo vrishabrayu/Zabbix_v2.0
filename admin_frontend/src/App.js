@@ -25,9 +25,9 @@ function App() {
               </PrivateRoute>
             }
           >
-            <Route path="create-license" element={<CreateLicense />} />
-            <Route path="all-licenses" element={<AllLicenses />} />
-            <Route index element={<Navigate to="create-license" />} />
+            <Route path="cl" element={<CreateLicense />} />
+            <Route path="al" element={<AllLicenses />} />
+            <Route index element={<Navigate to="cl" />} />
           </Route>
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>

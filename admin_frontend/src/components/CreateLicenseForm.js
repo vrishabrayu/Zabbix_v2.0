@@ -34,30 +34,34 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
   };
 
   return (
-    <div className="create-license-form">
-      <h3>Create New License</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Client ID:</label>
+    <div className="create-license-form enhanced-form">
+      <h3 className="form-title">Create New License</h3>
+      <form onSubmit={handleSubmit} className="form-fields">
+        <div className="form-group">
+          <label htmlFor="clientId">Client ID:</label>
           <input
+            id="clientId"
             type="text"
             value={clientId}
             onChange={(e) => setClientId(e.target.value)}
             required
+            className="form-input"
           />
         </div>
-        <div>
-          <label>Email:</label>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
           <input
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="form-input"
           />
         </div>
-        <div>
-          <label>Expiry Period:</label>
-          <select value={years} onChange={e => setYears(e.target.value)} required>
+        <div className="form-group">
+          <label htmlFor="years">Expiry Period:</label>
+          <select id="years" value={years} onChange={e => setYears(e.target.value)} required className="form-input">
             <option value="1">1 year</option>
             <option value="2">2 years</option>
             <option value="3">3 years</option>
@@ -65,17 +69,23 @@ const CreateLicenseForm = ({ onLicenseCreated }) => {
             <option value="5">5 years</option>
           </select>
         </div>
-        <div>
-          <label>Product:</label>
-          <select value={product} onChange={e => setProduct(e.target.value)} required>
+        <div className="form-group">
+          <label htmlFor="product">Product:</label>
+          <select id="product" value={product} onChange={e => setProduct(e.target.value)} required className="form-input">
             <option value="zabbix">Zabbix</option>
             <option value="grafana">Grafana</option>
           </select>
         </div>
-        <button type="submit">Generate License</button>
+        <button type="submit" className="form-submit-btn">Generate License</button>
       </form>
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">{success}</p>}
+      {error && <p className="error form-error">{error}</p>}
+      {success && (
+        <div className="license-key-box form-success">
+          <h4>License Created!</h4>
+          <div><b>License Key:</b> {success.match(/License Key: ([^,]+)/)?.[1]}</div>
+          <div><b>Instance ID:</b> {success.match(/Instance ID: (.+)$/)?.[1]}</div>
+        </div>
+      )}
     </div>
   );
 };

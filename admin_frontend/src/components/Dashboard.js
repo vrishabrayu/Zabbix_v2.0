@@ -16,8 +16,8 @@ const Dashboard = () => {
         <h2>Zabbix Admin</h2>
         <nav>
           <ul>
-            <li><NavLink to="/dashboard/create-license" className={({ isActive }) => isActive ? 'active' : ''}>Create License</NavLink></li>
-            <li><NavLink to="/dashboard/all-licenses" className={({ isActive }) => isActive ? 'active' : ''}>All Licenses</NavLink></li>
+            <li><NavLink to="/dashboard/cl" className={({ isActive }) => isActive ? 'active' : ''}>Create License</NavLink></li>
+            <li><NavLink to="/dashboard/al" className={({ isActive }) => isActive ? 'active' : ''}>All Licenses</NavLink></li>
           </ul>
         </nav>
         <button onClick={handleLogout} className="logout-button">Logout</button>

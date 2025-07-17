@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import identiqaLogo from '../images/identiqa.png';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Admin Login</h2>
+      <img src={identiqaLogo} alt="Identiqa Logo" className="login-logo-img" />
       <form onSubmit={handleLogin}>
         <div>
           <label>Username:</label>

@@ -20,7 +20,7 @@ export const getAllLicenses = () => {
 };
 
 export const deleteLicense = (licenseKey) => {
-  return apiClient.delete(`/license/${licenseKey}`);
+  return apiClient.delete(`/delete-license/${licenseKey}`);
 };
 
 export const updateLicense = (licenseKey, data) => {
